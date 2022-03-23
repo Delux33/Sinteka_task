@@ -38,9 +38,8 @@ public class StringComparison {
 
                         if (wordFromFirstList.equals(wordFromSecondList)) {
 
-                            if (indexFirstList.contains(firstListOfWords.getKey())) {
-                                break;
-                            }
+                            if (repeatsFromList(firstListOfWords, indexFirstList)) break;
+                            if (repeatsFromList(secondListOfWords, indexSecondList)) break;
 
                             String stringWithCoincidence = getStringWithCoincidence(firstListOfStrings, secondListOfStrings,
                                     firstListOfWords, secondListOfWords);
@@ -58,6 +57,13 @@ public class StringComparison {
         removeCoincidenceStringsFromSecondList();
         addNotCoincidencesFromSecondList(secondListOfStrings, result);
         return result;
+    }
+
+    private static boolean repeatsFromList(Map.Entry<Integer, List<String>> ListOfWords, Set<Integer> indexFromList) {
+        if (indexFromList.contains(ListOfWords.getKey())) {
+            return true;
+        }
+        return false;
     }
 
     private static String getStringWithCoincidence(List<String> firstListOfStrings,
